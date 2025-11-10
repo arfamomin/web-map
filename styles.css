@@ -167,3 +167,21 @@ html, body, #map {
     80% { transform: translate(5px, -5px) rotate(0.5deg); }
     90% { transform: translate(-5px, -5px) rotate(-0.5deg); }
 }
+
+ #outline-top {
+      position: fixed;
+      right: 30%;
+      top: 10%;
+      /* z-index: -1; */
+      pointer-events: none;
+      width: 75px;
+}
+
+ #outline-bottom {
+      position: fixed;
+      left: 30%;
+      bottom: 10%;
+      /* z-index: -1; */
+      pointer-events: none;
+      width: 75px;
+}

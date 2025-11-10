@@ -5,10 +5,44 @@ mapboxgl.accessToken = "pk.eyJ1IjoiYXJmYW1vbWluIiwiYSI6ImNscGwwYzZlMDAxaHgyanA1c
 const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/arfamomin/cmhs5blt0002r01s21t5p4dfh",
-  center: [110.2995, 23.1670],
-  zoom: 2,
+  center: [110.2995, 22.1670],
+  zoom: 1.5,
   projection: "globe",
 });
+
+const outlineTop = document.getElementById("outline-top");
+const outlineBottom = document.getElementById("outline-bottom");
+
+const targetWidth = 2560;
+const targetHeight = 1664;
+const tolerance = 0.15;
+
+function screenMatches() {
+  return (
+    window.screen.width >= targetWidth * (1 - tolerance) &&
+    window.screen.width <= targetWidth * (1 + tolerance) &&
+    window.screen.height >= targetHeight * (1 - tolerance) &&
+    window.screen.height <= targetHeight * (1 + tolerance)
+  );
+}
+
+function updateOutlineVisibility() {
+  const zoom = map.getZoom();
+  if (outlineTop && outlineBottom) {
+    if (screenMatches() && zoom >= 1.5 && zoom <= 1.8) {
+      outlineTop.style.display = "block";
+      outlineBottom.style.display = "block";
+    } else {
+      outlineTop.style.display = "none";
+      outlineBottom.style.display = "none";
+    }
+  }
+}
+
+// run on zoom events
+map.on("zoom", updateOutlineVisibility);
+map.on("moveend", updateOutlineVisibility);
+window.addEventListener("resize", updateOutlineVisibility);
 
 map.on('style.load', () => {
   map.setFog({
@@ -19,7 +53,6 @@ map.on('style.load', () => {
     'star-intensity': 0 // no stars
   });
 });
-
 
 let currentMagnitude = 2.0;
 
@@ -159,6 +192,4 @@ map.on("load", () => {
   shakeBtn.addEventListener('click', () => {
     shake(currentMagnitude);
   });
-
-
 });
