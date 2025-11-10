@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>earthquake map</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.11.0/dist/maplibre-gl.css'/>
+    <link rel='stylesheet' href='styles.css'/>
+</head>
+<body>
+<div id="map"></div>
+<img id="outline" src="outline.gif" alt="outline decoration" />
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  #map {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+
+  /* Fixed decorative image, positioned slightly off the map */
+  #outline {
+    position: fixed;
+    top: 50px;        /* adjust to move vertically */
+    right: -30px;     /* negative moves it partly off-screen */
+    width: 150px;     /* scale as needed */
+    opacity: 0.9;     /* optional for blending */
+    pointer-events: none; /* so it doesn't block clicks on map */
+    z-index: 10;      /* ensure it stays above map */
+  }
+</style>
+<div class="info-panel">
+    <div class="title">
+        <h1>GLOBAL SEISMIC ACTIVITY</h1>
+    </div>
+    <div class="content">
+        <p>This map displays real-time seismic activity worldwide, showing earthquakes of magnitude 2.5 and above from the past 30 days.</p>
+    </div>
+</div>
+<div id="popup-panel" class="popup-panel"></div>
+<div id="shake-button" class="shake-button">
+    <div class="button">
+        <h1>SHAKE</h1>
+    </div>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>
