@@ -23,6 +23,7 @@ map.on('style.load', () => {
 
 let currentMagnitude = 2.0;
 
+// JS function that performs shake when button is clicked
 function shake(magnitude) {
   const mapElement = document.getElementById('map');
   const shakeBtn = document.getElementById('shake-button');
@@ -101,9 +102,9 @@ map.on("load", () => {
         ["linear"],
         ["get", "mag"],
         2.5, 4,      // small earthquakes
-        4.0, 6,     // medium earthquakes
-        5.0, 8,     // large earthquakes
-        6.5, 20      // very large earthquakes
+        4.0, 6,     // medium
+        5.0, 8,     // large
+        6.5, 20      // very large
       ],
       ["+", 0.5, ["*", 0.5, ["sin", ["+", phase, randomOffset]]]]]
     );
